@@ -28,11 +28,11 @@ public class Simulator {
                     System.out.println(display(rolledNumber));
 
                 }
+                isCompleted = true;
             }catch(InputMismatchException e){
                 System.out.println("That is not a valid number!");
                 scanner.next();
             }
-            isCompleted = true;
         }while(!isCompleted);
     }
 
