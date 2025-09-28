@@ -10,6 +10,7 @@ public class PasswordGenerator {
         String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";
         String symbols = "!@#$%^&*()?";
+        String allChars;
 
         StringBuilder charOptions = new StringBuilder();
         StringBuilder password = new StringBuilder();
@@ -28,35 +29,34 @@ public class PasswordGenerator {
             charOptions.append(symbols);
         }
 
-        String allChars = charOptions.toString();
+        allChars = charOptions.toString();
+
 
         for (int i = 0; i < length; i++) {
             if(useLowerCase && !password.toString().contains(lowerCase)) {
                 password.append(lowerCase.charAt(random.nextInt(lowerCase.length())));
                 length--;
-                System.out.println("Remaining length: " + length);
             }
 
-            if(useUpperCase && !password.toString().contains(upperCase)) {
+            if(length > 0 && useUpperCase && !password.toString().contains(upperCase)) {
                 password.append(upperCase.charAt(random.nextInt(upperCase.length())));
                 length--;
-                System.out.println("Remaining length: " + length);
             }
 
-            if(useNumbers && !password.toString().contains(numbers)) {
+            if(length > 0 && useNumbers && !password.toString().contains(numbers)) {
                 password.append(numbers.charAt(random.nextInt(numbers.length())));
                 length--;
-                System.out.println("Remaining length: " + length);
             }
 
-            if(useSymbols && !password.toString().contains(symbols)) {
+            if(length > 0 && useSymbols && !password.toString().contains(symbols)) {
                 password.append(symbols.charAt(random.nextInt(symbols.length())));
                 length--;
-                System.out.println("Remaining length: " + length);
             }
 
-            char nextLetter = allChars.charAt(random.nextInt(allChars.length()));
-            password.append(nextLetter);
+            if(length > 0){
+                char nextLetter = allChars.charAt(random.nextInt(allChars.length()));
+                password.append(nextLetter);
+            }
         }
 
         return password.toString();

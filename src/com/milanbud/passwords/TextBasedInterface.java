@@ -7,7 +7,6 @@ import java.io.IOException;
 public class TextBasedInterface implements UserInterface {
 
     private Scanner scanner = new Scanner(System.in);
-    private boolean isCompleted;
 
     public TextBasedInterface() {
         this.scanner=new Scanner(System.in);
@@ -16,12 +15,12 @@ public class TextBasedInterface implements UserInterface {
     @Override
     public int getPasswordLength() {
         int length = 0;
-        isCompleted = false;
+        boolean isCompleted = false;
         do {
             try {
-                System.out.print("Enter your password length: ");
+                System.out.print("Enter your password length (At least 4 characters): ");
                 length = scanner.nextInt();
-                isCompleted = true;
+                isCompleted = length >=4;
             }catch (InputMismatchException e){
                 System.out.println("Invalid input. Try again: ");
                 scanner.next();
@@ -57,5 +56,14 @@ public class TextBasedInterface implements UserInterface {
     @Override
     public void displayPassword(String password) {
         System.out.println("Here is your password: "+ password);
+    }
+
+    @Override
+    public boolean validateRequest(boolean useLowerCase, boolean useUpperCase, boolean useNumbers, boolean useSymbols) {
+        if(!useLowerCase && !useUpperCase && !useNumbers && !useSymbols){
+            System.out.println("You should select at least one of the options. Try Again!");
+            return false;
+        }
+        return true;
     }
 }

@@ -8,5 +8,6 @@ public interface UserInterface {
     public boolean useNumbers();
     public boolean useSymbols();
     public void  displayPassword(String password);
+    public boolean validateRequest(boolean useLowerCase, boolean useUpperCase, boolean useNumbers, boolean useSymbols);
 
 }

@@ -7,10 +7,17 @@ public class App {
         UserInterface ui = new TextBasedInterface();
 
         int length = ui.getPasswordLength();
-        boolean useLowerCase = ui.useLowerCase();
-        boolean useUpperCase = ui.useUpperCase();
-        boolean useNumbers = ui.useNumbers();
-        boolean useSymbols = ui.useSymbols();
+        boolean useLowerCase;
+        boolean useUpperCase;
+        boolean useNumbers;
+        boolean useSymbols;
+
+        do{
+            useLowerCase = ui.useLowerCase();
+            useUpperCase = ui.useUpperCase();
+            useNumbers = ui.useNumbers();
+            useSymbols = ui.useSymbols();
+        }while(!ui.validateRequest(useLowerCase,useUpperCase,useNumbers,useSymbols));
 
         PasswordGenerator gen = new PasswordGenerator();
         String password = gen.generatePassword(length, useLowerCase, useUpperCase, useNumbers, useSymbols);
