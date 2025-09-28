@@ -2,14 +2,14 @@ package com.milanbud.filemanager;
 
 public class App implements UIEventHandler{
     FileManager fm;
+    static UserInterface ui = new TextBasedInterface();
 
     public App(){
         this.fm = new FileManager();
     }
 
     static void main() {
-        UserInterface ui = new TextBasedInterface();
-        ui.subscribe(new App());
+        ui.subscribe(new App()); //creating handler instance explicitly from the constructor
         ui.start();
     }
 
@@ -20,12 +20,13 @@ public class App implements UIEventHandler{
 
     @Override
     public void onCreate(String path) {
-        this.fm.createDirectory(path);
+        ui.display(this.fm.createDirectory(path));
     }
 
     @Override
     public void onDelete(String path) {
-        this.fm.deleteFileOrDirectory(path);
+        String result = this.fm.deleteFileOrDirectory(path);
+        ui.display(result);
     }
 
 }

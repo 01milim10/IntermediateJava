@@ -25,21 +25,22 @@ public class FileManager {
         }
     }
 
-    public void createDirectory(String directoryPath){
+
+    public String createDirectory(String directoryPath){
         File directory = new File(directoryPath);
         if(directory.mkdir()){
-            System.out.println("Successfully create directory!");
+            return "Successfully create directory!";
         }else{
-            System.out.println("Failed to create directory!");
+            return "Failed to create directory!";
         }
     }
 
-    public void deleteFileOrDirectory(String directoryOrFilePath){
+    public String deleteFileOrDirectory(String directoryOrFilePath){
         File directory = new File(directoryOrFilePath);
         if(directory.delete()){
-            System.out.println("Successfully deleted the file/directory!");
+            return "Successfully deleted the file/directory!";
         }else{
-            System.out.println("Failed to delete file/directory!");
+            return "Failed to delete file/directory!";
         }
     }
 }
